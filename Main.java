@@ -1,25 +1,46 @@
-import java.util.*;
-public class Main {
-    public static void main(String[] args) {
-        int lower = 1;
-        int upper =100;
-        Random randomData =new Random();
-        int  target = randomData.nextInt(lower,upper+1);
-        System.out.printf("Guess a number between %d and %d :",lower,upper);
-        Scanner userInput =new Scanner(System.in);
-        int guess;
-        int counter = 0;
-        do{
-            guess= userInput.nextInt();
-            counter++;
-            if(guess > target)
-            {
-                System.out.println("Guess lower !");
+import java.util.Scanner;
 
-            } else if (guess < target) {
-                System.out.println("guess higher !");
-            }
-        }while(guess!=target);
-        System.out.println("correct! It took you " +counter + " tries");
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Input: Number of subjects
+        System.out.print("Enter the number of subjects: ");
+        int numSubjects = scanner.nextInt();
+        // Input: Marks for each subject
+        int[] marks = new int[numSubjects];
+        int totalMarks = 0;
+        System.out.println("Enter marks for each subject (out of 100):");
+        for (int i = 0; i < numSubjects; i++) {
+            System.out.print("Subject " + (i + 1) + ": ");
+            marks[i] = scanner.nextInt();
+            totalMarks += marks[i];
+        }
+
+        // Calculate Average Percentage
+        double averagePercentage = (double) totalMarks / numSubjects;
+
+        // Grade Calculation
+        char grade;
+        if (averagePercentage >= 90) {
+            grade = 'A';
+        } else if (averagePercentage >= 80) {
+            grade = 'B';
+        } else if (averagePercentage >= 70) {
+            grade = 'C';
+        } else if (averagePercentage >= 60) {
+            grade = 'D';
+        } else {
+            grade = 'F';
+        }
+
+        // Display Results
+        System.out.println("\n--- Results ---");
+        System.out.println("Total Marks: " + totalMarks);
+        System.out.println("Average Percentage: " + averagePercentage + "%");
+        System.out.println("Grade: " + grade);
+
+        scanner.close();
     }
 }
